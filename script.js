@@ -20,6 +20,8 @@ function updatePanelPosition() {
 
         activePanel.style.top = `${rect.top + window.scrollY}px`;
         activePanel.style.left = `${rect.right + 20 + window.scrollX}px`;
+        activePanel.style.top = `${rect.top}px`;
+        activePanel.style.left = `${rect.right + 20}px`;
 
         // Ensure panel does not go off-screen right
         const panelRect = activePanel.getBoundingClientRect();
@@ -202,11 +204,18 @@ function initModalHandlers() {
             }
 
             panel.classList.add('active');
+            activePanel = panel;
+            activeSkillCard = card;
+            activeProjectCard = null;
+            activeExperienceNode = null;
 
-            // Auto-hide after 3 seconds
-            setTimeout(() => {
+            // Auto-hide after 5 seconds
+            if (panelCloseTimer) clearTimeout(panelCloseTimer);
+            panelCloseTimer = setTimeout(() => {
                 panel.classList.remove('active');
-            }, 2000);
+                activePanel = null;
+                activeSkillCard = null;
+            }, 5000);
 
             // Close other panels
             projectsPanel.classList.remove('active');
@@ -249,11 +258,18 @@ function initModalHandlers() {
             }
 
             panel.classList.add('active');
+            activePanel = panel;
+            activeProjectCard = card;
+            activeSkillCard = null;
+            activeExperienceNode = null;
 
-            // Auto-hide after 3 seconds
-            setTimeout(() => {
+            // Auto-hide after 5 seconds
+            if (panelCloseTimer) clearTimeout(panelCloseTimer);
+            panelCloseTimer = setTimeout(() => {
                 panel.classList.remove('active');
-            }, 2000);
+                activePanel = null;
+                activeProjectCard = null;
+            }, 5000);
 
             // Close other panels
             skillsPanel.classList.remove('active');
