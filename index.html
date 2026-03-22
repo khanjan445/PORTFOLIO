@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - [Your Name]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Cursor Glow -->
+    <div class="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">Portfolio</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-bg">
+            <div class="gradient-bg"></div>
+            <div class="particles"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-name">Your Name</h1>
+            <div class="hero-tagline">
+                <span class="static-text">I'm a </span>
+                <span class="dynamic-text" id="dynamic-text"></span>
+            </div>
+            <p class="hero-subtitle">Creating digital experiences that matter</p>
+            <button class="cta-button magnetic" onclick="scrollToSection('about')">
+                Explore My Work <span class="arrow">↓</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="reveal-text reveal">I'm a passionate developer with a love for creating innovative solutions. With expertise in modern web technologies, I bring ideas to life through code.</p>
+                    <p class="reveal-text reveal">When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the community.</p>
+                </div>
+                <div class="about-card glass">
+                    <div class="card-content">
+                        <h3>Quick Facts</h3>
+                        <ul>
+                            <li><span class="fact-label">Location:</span> Your City, Country</li>
+                            <li><span class="fact-label">Experience:</span> X Years</li>
+                            <li><span class="fact-label">Focus:</span> Full-Stack Development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card glass reveal" data-skill="javascript">
+                    <div class="skill-icon">JS</div>
+                    <h3>JavaScript</h3>
+                    <p>Modern ES6+ development</p>
+                </div>
+                <div class="skill-card glass reveal" data-skill="react">
+                    <div class="skill-icon">⚛️</div>
+                    <h3>React</h3>
+                    <p>Component-based UI development</p>
+                </div>
+                <div class="skill-card glass reveal" data-skill="python">
+                    <div class="skill-icon">🐍</div>
+                    <h3>Python</h3>
+                    <p>Backend and data processing</p>
+                </div>
+                <div class="skill-card glass reveal" data-skill="design">
+                    <div class="skill-icon">🎨</div>
+                    <h3>UI/UX Design</h3>
+                    <p>User-centered design principles</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Modal -->
+    <div id="skills-modal" class="modal">
+        <div class="modal-content glass">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-skill-title"></h3>
+            <div class="skill-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <span class="progress-text" id="progress-text"></span>
+            </div>
+            <p id="modal-skill-description"></p>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card glass reveal" data-project="1">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x250/6366f1/ffffff?text=Project+1" alt="Project 1">
+                    </div>
+                    <div class="project-content">
+                        <h3>E-Commerce Platform</h3>
+                        <p>A full-stack e-commerce solution with modern UI</p>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card glass reveal" data-project="2">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x250/06b6d4/ffffff?text=Project+2" alt="Project 2">
+                    </div>
+                    <div class="project-content">
+                        <h3>Data Visualization Dashboard</h3>
+                        <p>Interactive dashboard for real-time data analysis</p>
+                        <div class="project-tech">
+                            <span>D3.js</span>
+                            <span>Python</span>
+                            <span>Flask</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card glass reveal" data-project="3">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Project+3" alt="Project 3">
+                    </div>
+                    <div class="project-content">
+                        <h3>Mobile App</h3>
+                        <p>Cross-platform mobile application</p>
+                        <div class="project-tech">
+                            <span>React Native</span>
+                            <span>Firebase</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content glass project-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-project-image">
+                <img id="modal-project-image" src="" alt="">
+            </div>
+            <div class="modal-project-details">
+                <h3 id="modal-project-title"></h3>
+                <p id="modal-project-description"></p>
+                <div class="modal-project-tech" id="modal-project-tech"></div>
+                <div class="modal-project-links">
+                    <a href="#" class="project-link">Live Demo</a>
+                    <a href="#" class="project-link">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass">
+                        <h3>Senior Developer</h3>
+                        <span class="timeline-date">2022 - Present</span>
+                        <p>Leading development of web applications and mentoring junior developers.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass">
+                        <h3>Full Stack Developer</h3>
+                        <span class="timeline-date">2020 - 2022</span>
+                        <p>Developed and maintained multiple client projects using modern technologies.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass">
+                        <h3>Junior Developer</h3>
+                        <span class="timeline-date">2019 - 2020</span>
+                        <p>Started my journey in web development, learning and applying new technologies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form class="glass">
+                        <div class="form-group">
+                            <input type="text" id="name" required>
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" required>
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" required></textarea>
+                            <label for="message">Message</label>
+                        </div>
+                        <button type="submit" class="submit-button magnetic">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info glass">
+                    <h3>Let's Connect</h3>
+                    <p>I'm always open to discussing new opportunities and interesting projects.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">GitHub</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">Email</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
