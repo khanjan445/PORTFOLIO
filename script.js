@@ -55,22 +55,30 @@ const skillsData = {
     javascript: {
         title: 'JavaScript',
         progress: 90,
-        description: 'Expert in modern ES6+ features, async programming, and building interactive web applications.'
+        description: 'Expert in modern ES6+ features, async programming, and building interactive web applications with deep knowledge of DOM APIs and event handling.',
+        expertise: ['Advanced ES6+ Syntax', 'Async/Await & Promises', 'DOM Manipulation', 'Event Handling', 'Performance Optimization'],
+        applications: ['Web Development', 'Real-time Applications', 'Frontend Frameworks']
     },
     react: {
         title: 'React',
         progress: 85,
-        description: 'Proficient in React ecosystem including hooks, context, and state management solutions.'
+        description: 'Proficient in React ecosystem including hooks, context API, and state management solutions. Experienced with component composition and optimization techniques.',
+        expertise: ['React Hooks', 'Context API', 'Component Design', 'Performance Tuning', 'Testing'],
+        applications: ['Web Applications', 'Single Page Apps', 'Progressive Web Apps']
     },
     python: {
         title: 'Python',
         progress: 80,
-        description: 'Experienced in backend development, data processing, and automation scripts.'
+        description: 'Experienced in backend development, data processing, automation scripts, and machine learning libraries with strong algorithmic problem-solving skills.',
+        expertise: ['Backend Development', 'Data Processing', 'Automation', 'API Development', 'Database Design'],
+        applications: ['Backend Systems', 'Data Analysis', 'Automation Scripts']
     },
     design: {
         title: 'UI/UX Design',
         progress: 75,
-        description: 'Skilled in creating user-centered designs with modern tools and principles.'
+        description: 'Skilled in creating user-centered designs with modern tools and principles. Focused on accessibility, usability, and creating compelling user experiences.',
+        expertise: ['User Research', 'Wireframing', 'Prototyping', 'Design Systems', 'Accessibility'],
+        applications: ['Web Design', 'Mobile Interfaces', 'Design Systems']
     }
 };
 
@@ -80,19 +88,52 @@ const projectsData = {
         title: 'E-Commerce Platform',
         description: 'A full-stack e-commerce solution with modern UI, secure payments, and admin dashboard.',
         tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-        image: 'https://via.placeholder.com/400x250/6366f1/ffffff?text=Project+1'
+        image: 'https://via.placeholder.com/400x250/6366f1/ffffff?text=Project+1',
+        certificate: {
+            title: 'E-Commerce Platform Achievement',
+            subtitle: 'Full-Stack Development Certificate',
+            description: 'Successfully designed and deployed a complete e-commerce platform with integrated payment processing, user authentication, and real-time inventory management. The platform handles 10,000+ concurrent users with 99.9% uptime.',
+            status: 'Completed',
+            impact: 'High - 50K+ Monthly Users',
+            duration: '3 Months',
+            team: '6 Members',
+            demoLink: '#',
+            githubLink: '#'
+        }
     },
     2: {
         title: 'Data Visualization Dashboard',
         description: 'Interactive dashboard for real-time data analysis with customizable charts and filters.',
         tech: ['D3.js', 'Python', 'Flask', 'PostgreSQL'],
-        image: 'https://via.placeholder.com/400x250/06b6d4/ffffff?text=Project+2'
+        image: 'https://via.placeholder.com/400x250/06b6d4/ffffff?text=Project+2',
+        certificate: {
+            title: 'Data Visualization Dashboard',
+            subtitle: 'Analytics & Performance Recognition',
+            description: 'Created an advanced data visualization dashboard providing real-time analytics with 15+ interactive chart types. The solution reduced data analysis time by 75% and improved decision-making efficiency across departments.',
+            status: 'Completed',
+            impact: 'Very High - Enterprise-Level',
+            duration: '2.5 Months',
+            team: '4 Members',
+            demoLink: '#',
+            githubLink: '#'
+        }
     },
     3: {
         title: 'Mobile App',
         description: 'Cross-platform mobile application for task management with offline capabilities.',
         tech: ['React Native', 'Firebase', 'Redux'],
-        image: 'https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Project+3'
+        image: 'https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Project+3',
+        certificate: {
+            title: 'Mobile App Development',
+            subtitle: 'Cross-Platform Excellence Certificate',
+            description: 'Developed a cross-platform mobile application available on iOS and Android with 100K+ downloads. Features include offline sync, real-time notifications, and seamless cloud integration with 4.8-star app store rating.',
+            status: 'Completed',
+            impact: 'High - 100K+ Downloads',
+            duration: '2 Months',
+            team: '5 Members',
+            demoLink: '#',
+            githubLink: '#'
+        }
     }
 };
 
@@ -200,6 +241,38 @@ function initModalHandlers() {
             document.getElementById('panel-progress-text').textContent = `${data.progress}%`;
             document.getElementById('panel-skill-description').textContent = data.description;
 
+            // Populate expertise list
+            const expertiseList = document.getElementById('expertise-list');
+            expertiseList.innerHTML = '';
+            data.expertise.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                expertiseList.appendChild(li);
+            });
+
+            // Populate applications
+            const applicationsList = document.getElementById('applications-list');
+            applicationsList.innerHTML = '';
+            data.applications.forEach(app => {
+                const span = document.createElement('span');
+                span.className = 'app-tag';
+                span.textContent = app;
+                applicationsList.appendChild(span);
+            });
+
+            // Update badge based on progress
+            const badge = document.querySelector('.skill-badge');
+            if (data.progress >= 85) {
+                badge.textContent = 'Expert';
+                badge.style.background = 'linear-gradient(135deg, #1e40af, #3b82f6)';
+            } else if (data.progress >= 75) {
+                badge.textContent = 'Advanced';
+                badge.style.background = 'linear-gradient(135deg, #0d9488, #06b6d4)';
+            } else {
+                badge.textContent = 'Proficient';
+                badge.style.background = 'linear-gradient(135deg, #8b5cf6, #a78bfa)';
+            }
+
             // Position panel next to clicked card
             const rect = card.getBoundingClientRect();
             const panel = skillsPanel;
@@ -281,12 +354,6 @@ function initModalHandlers() {
             activeSkillCard = null;
             activeExperienceNode = null;
 
-            // Add move right animation to project card
-            card.classList.remove('project-anim-right');
-            void card.offsetWidth; // trigger reflow to reset animation if spammed
-            card.classList.add('project-anim-right');
-            setTimeout(() => card.classList.remove('project-anim-right'), 600);
-
             // Auto-hide after 5 seconds
             if (panelCloseTimer) clearTimeout(panelCloseTimer);
             panelCloseTimer = setTimeout(() => {
@@ -297,6 +364,9 @@ function initModalHandlers() {
 
             // Close other panels
             skillsPanel.classList.remove('active');
+
+            // Show certificate modal after a short delay
+            setTimeout(() => showCertificateModal(project, data), 400);
         });
     });
 
@@ -315,37 +385,26 @@ function initModalHandlers() {
             const panel = experiencePanel;
             const isMobile = window.innerWidth <= 768;
 
-            panel.classList.remove('pop-left', 'pop-right');
             const isLeftBranch = node.closest('.left-branch') !== null;
 
             if (isMobile) {
-                // Center the panel on mobile
                 panel.style.left = '50%';
                 panel.style.top = '50%';
                 panel.style.transform = 'translate(-50%, -50%)';
             } else {
-                if (!isLeftBranch) {
-                    panel.classList.add('pop-left');
-                    const panelWidth = panel.offsetWidth || 300;
-                    panel.style.left = `${Math.max(16, rect.left - panelWidth - 20)}px`;
+                const panelWidth = panel.offsetWidth || 300;
+                if (isLeftBranch) {
+                    panel.style.left = `${Math.max(16, rect.right + 20)}px`;
                 } else {
-                    panel.classList.add('pop-right');
-                    panel.style.left = `${rect.right + 20}px`;
+                    panel.style.left = `${Math.max(16, rect.left - panelWidth - 20)}px`;
                 }
                 panel.style.top = `${rect.top}px`;
                 panel.style.transform = '';
             }
 
-            // Trigger reflow to restart animation
-            void panel.offsetWidth;
-
             panel.classList.add('active');
             activePanel = panel;
             activeExperienceNode = node;
-
-            // Add falling tree animation to node
-            node.classList.add('fall-anim');
-            setTimeout(() => node.classList.remove('fall-anim'), 1000);
 
             // Auto-hide after 5 seconds
             if (panelCloseTimer) clearTimeout(panelCloseTimer);
@@ -378,6 +437,30 @@ function initModalHandlers() {
             experiencePanel.classList.remove('active');
         }
     });
+
+    // Certificate Modal Handler
+    const certificateModal = document.getElementById('certificate-modal');
+    const certificateClose = document.querySelector('.certificate-close');
+    
+    if (certificateClose) {
+        certificateClose.addEventListener('click', () => {
+            certificateModal.classList.remove('active');
+        });
+    }
+
+    // Close certificate modal on outside click
+    certificateModal.addEventListener('click', (e) => {
+        if (e.target === certificateModal) {
+            certificateModal.classList.remove('active');
+        }
+    });
+
+    // Close certificate modal on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            certificateModal.classList.remove('active');
+        }
+    });
 }
 
 // Magnetic Effects
@@ -395,6 +478,30 @@ function initMagneticEffects() {
             element.style.transform = 'translate(0px, 0px)';
         });
     });
+}
+
+// Show Certificate Modal
+function showCertificateModal(projectId, projectData) {
+    const certificateModal = document.getElementById('certificate-modal');
+    const cert = projectData.certificate;
+
+    // Populate certificate modal
+    document.getElementById('cert-title').textContent = cert.title;
+    document.getElementById('cert-subtitle').textContent = cert.subtitle;
+    document.getElementById('cert-description').textContent = cert.description;
+    document.getElementById('cert-status').textContent = cert.status;
+    document.getElementById('cert-impact').textContent = cert.impact;
+    document.getElementById('cert-duration').textContent = cert.duration;
+    document.getElementById('cert-team').textContent = cert.team;
+    
+    const demoLink = document.getElementById('cert-demo');
+    const githubLink = document.getElementById('cert-github');
+    
+    demoLink.href = cert.demoLink;
+    githubLink.href = cert.githubLink;
+
+    // Show modal with animation
+    certificateModal.classList.add('active');
 }
 
 // Cursor Glow

@@ -101,16 +101,41 @@
                 </div>
                 <!-- Skills Slide Panel -->
                 <div id="skills-panel" class="slide-panel">
-                    <div class="panel-content glass">
+                    <div class="panel-content glass skill-panel-content">
                         <span class="close-panel">&times;</span>
-                        <h3 id="panel-skill-title"></h3>
-                        <div class="skill-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="panel-progress-fill"></div>
-                            </div>
-                            <span class="progress-text" id="panel-progress-text"></span>
+                        <div class="skill-panel-header">
+                            <h3 id="panel-skill-title"></h3>
+                            <span class="skill-badge" id="skill-badge">Expert</span>
                         </div>
-                        <p id="panel-skill-description"></p>
+                        <div class="skill-panel-container">
+                            <div class="skill-progress">
+                                <div class="progress-label">Proficiency Level</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="panel-progress-fill"></div>
+                                </div>
+                                <span class="progress-text" id="panel-progress-text"></span>
+                            </div>
+                            <div class="skill-description-container">
+                                <h4>Overview</h4>
+                                <p id="panel-skill-description"></p>
+                            </div>
+                            <div class="skill-expertise-container">
+                                <h4>Key Expertise</h4>
+                                <ul class="expertise-list" id="expertise-list">
+                                    <li>Advanced Development</li>
+                                    <li>Performance Optimization</li>
+                                    <li>Best Practices</li>
+                                </ul>
+                            </div>
+                            <div class="skill-applications-container">
+                                <h4>Applications</h4>
+                                <div class="applications-list" id="applications-list">
+                                    <span class="app-tag">Web Development</span>
+                                    <span class="app-tag">Mobile Apps</span>
+                                    <span class="app-tag">Backend Systems</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -186,6 +211,46 @@
             </div>
         </div>
     </section>
+
+    <!-- Certificate Modal -->
+    <div id="certificate-modal" class="certificate-modal">
+        <div class="certificate-content">
+            <span class="certificate-close">&times;</span>
+            <div class="certificate-header">
+                <div class="certificate-icon">🏆</div>
+                <div class="certificate-title">
+                    <h2 id="cert-title">Project Certificate</h2>
+                    <p class="certificate-subtitle" id="cert-subtitle">Project Recognition</p>
+                </div>
+            </div>
+            <div class="certificate-body">
+                <h3>Project Overview</h3>
+                <p id="cert-description">Project description goes here</p>
+                <div class="certificate-details">
+                    <div class="certificate-detail-item">
+                        <div class="certificate-detail-label">Status</div>
+                        <div class="certificate-detail-value" id="cert-status">Completed</div>
+                    </div>
+                    <div class="certificate-detail-item">
+                        <div class="certificate-detail-label">Impact</div>
+                        <div class="certificate-detail-value" id="cert-impact">High</div>
+                    </div>
+                    <div class="certificate-detail-item">
+                        <div class="certificate-detail-label">Duration</div>
+                        <div class="certificate-detail-value" id="cert-duration">2 Months</div>
+                    </div>
+                    <div class="certificate-detail-item">
+                        <div class="certificate-detail-label">Team Size</div>
+                        <div class="certificate-detail-value" id="cert-team">5 People</div>
+                    </div>
+                </div>
+            </div>
+            <div class="certificate-links">
+                <a href="#" class="certificate-link" id="cert-demo">🔗 Live Demo</a>
+                <a href="#" class="certificate-link" id="cert-github">💻 Source Code</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Experience Section -->
     <section id="experience" class="experience">
