@@ -1,7 +1,6 @@
 // DOM Elements
 const dynamicText = document.getElementById('dynamic-text');
 const skillsPanel = document.getElementById('skills-panel');
-const projectsPanel = document.getElementById('projects-panel');
 const experiencePanel = document.getElementById('experience-panel');
 const cursorGlow = document.querySelector('.cursor-glow');
 const magneticElements = document.querySelectorAll('.magnetic');
@@ -10,13 +9,12 @@ const magneticElements = document.querySelectorAll('.magnetic');
 let panelCloseTimer = null;
 let activePanel = null;
 let activeSkillCard = null;
-let activeProjectCard = null;
 let activeExperienceNode = null;
 let shakeTimer = null;
 
 function updatePanelPosition() {
-    if (activePanel && (activeSkillCard || activeProjectCard || activeExperienceNode)) {
-        let targetEl = activeSkillCard || activeProjectCard || activeExperienceNode;
+    if (activePanel && (activeSkillCard || activeExperienceNode)) {
+        let targetEl = activeSkillCard || activeExperienceNode;
         if (activeExperienceNode) {
             targetEl = activeExperienceNode.querySelector('.tree-content');
         }
@@ -52,33 +50,61 @@ let isDeleting = false;
 
 // Skills Data
 const skillsData = {
+    pentesting: {
+        title: 'Penetration Testing',
+        progress: 88,
+        description: 'Ethical penetration testing for web, network, and application stacks. I identify exploitable weaknesses, validate controls, and deliver practical remediation guidance.',
+        expertise: ['Reconnaissance & Discovery', 'Vulnerability Assessment', 'Exploit Validation', 'Post-Exploitation', 'Security Reporting'],
+        applications: ['Red Team Exercises', 'External Assessments', 'Internal Audits']
+    },
+    websec: {
+        title: 'Web App Security',
+        progress: 85,
+        description: 'Securing web applications against OWASP Top 10 risks, application logic flaws, and authentication bypasses through hands-on testing and secure coding reviews.',
+        expertise: ['OWASP Top 10', 'Secure Coding', 'Input Validation', 'Session Management', 'API Security'],
+        applications: ['Web Penetration Tests', 'App Hardening', 'Secure Development']
+    },
+    netsec: {
+        title: 'Network Security',
+        progress: 82,
+        description: 'Defending infrastructure with network segmentation, intrusion prevention, packet analysis, and secure remote access controls to harden enterprise environments.',
+        expertise: ['Firewall Review', 'IDS/IPS Monitoring', 'Network Segmentation', 'VPN Security', 'Packet Analysis'],
+        applications: ['Perimeter Defense', 'Internal Network Audit', 'Secure Connectivity']
+    },
+    secauto: {
+        title: 'Security Automation',
+        progress: 78,
+        description: 'Automating security workflows using scripts and tooling for continuous scanning, incident response orchestration, and compliance checks.',
+        expertise: ['SIEM Automation', 'Vulnerability Scanning', 'CI/CD Security Gates', 'Scripting & Orchestration', 'Alert Triage'],
+        applications: ['Continuous Monitoring', 'DevSecOps', 'Automated Reporting']
+    },
     javascript: {
         title: 'JavaScript',
-        progress: 90,
-        description: 'Expert in modern ES6+ features, async programming, and building interactive web applications with deep knowledge of DOM APIs and event handling.',
-        expertise: ['Advanced ES6+ Syntax', 'Async/Await & Promises', 'DOM Manipulation', 'Event Handling', 'Performance Optimization'],
-        applications: ['Web Development', 'Real-time Applications', 'Frontend Frameworks']
+        progress: 50,
+        description: 'Core JavaScript skills for frontend scripting, DOM interaction, and ES6 syntax applied to interactive web experiences.',
+        expertise: ['DOM Manipulation', 'ES6 Syntax', 'Event Handling', 'Async Basics', 'Browser APIs'],
+        applications: ['Frontend Development', 'Interactive UI', 'Dynamic Web Pages']
     },
-    react: {
-        title: 'React',
-        progress: 85,
-        description: 'Proficient in React ecosystem including hooks, context API, and state management solutions. Experienced with component composition and optimization techniques.',
-        expertise: ['React Hooks', 'Context API', 'Component Design', 'Performance Tuning', 'Testing'],
-        applications: ['Web Applications', 'Single Page Apps', 'Progressive Web Apps']
+    csshtml: {
+        title: 'CSS / HTML',
+        progress: 50,
+        description: 'Fundamental HTML and CSS skills for building accessible layouts, responsive designs, and clean web interfaces.',
+        expertise: ['Responsive Layouts', 'Semantic Markup', 'Flexbox & Grid', 'Accessibility', 'Cross-Browser Styling'],
+        applications: ['Web Interfaces', 'Landing Pages', 'Site Prototyping']
     },
     python: {
         title: 'Python',
-        progress: 80,
-        description: 'Experienced in backend development, data processing, automation scripts, and machine learning libraries with strong algorithmic problem-solving skills.',
-        expertise: ['Backend Development', 'Data Processing', 'Automation', 'API Development', 'Database Design'],
-        applications: ['Backend Systems', 'Data Analysis', 'Automation Scripts']
+        progress: 50,
+        description: 'Practical Python scripting for automation, data handling, and basic backend logic with a focus on clarity and maintainability.',
+        expertise: ['Scripting', 'Data Processing', 'Automation', 'APIs', 'Libraries'],
+        applications: ['Automation Tasks', 'Backend Scripts', 'Data Workflows']
     },
-    design: {
-        title: 'UI/UX Design',
-        progress: 75,
-        description: 'Skilled in creating user-centered designs with modern tools and principles. Focused on accessibility, usability, and creating compelling user experiences.',
-        expertise: ['User Research', 'Wireframing', 'Prototyping', 'Design Systems', 'Accessibility'],
-        applications: ['Web Design', 'Mobile Interfaces', 'Design Systems']
+    java: {
+        title: 'Java',
+        progress: 50,
+        description: 'Fundamental Java knowledge for object-oriented programming, core APIs, and application logic design.',
+        expertise: ['OOP Concepts', 'Core Java APIs', 'Collections', 'Exception Handling', 'Basic Concurrency'],
+        applications: ['Desktop Apps', 'Backend Services', 'Java Prototyping']
     }
 };
 
@@ -141,18 +167,18 @@ const projectsData = {
 const experienceData = {
     1: {
         title: 'Senior Developer',
-        date: '2022 - Present',
+        date: '2025 - Present',
         description: 'Leading development of web applications and mentoring junior developers.'
     },
     2: {
-        title: 'Full Stack Developer',
-        date: '2020 - 2022',
+        title: 'Head Management',
+        date: '2025 ( 6 Months) ',
         description: 'Developed and maintained multiple client projects using modern technologies.'
     },
     3: {
-        title: 'Junior Developer',
-        date: '2019 - 2020',
-        description: 'Started my journey in web development, learning and applying new technologies.'
+        title: 'Pentester',
+        date: '2025 - 2026 ( 9 months )',
+        description: 'Led a penetration testing project on a real-world web application, identifying critical vulnerabilities and delivering actionable security recommendations based on industry best practices.'
     }
 };
 
@@ -161,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTypingAnimation();
     initScrollAnimations();
     initModalHandlers();
+    initProjectSwitcher();
     initMagneticEffects();
     initCursorGlow();
     initFormHandler();
@@ -313,110 +340,15 @@ function initModalHandlers() {
         });
     });
 
-    // Projects panel
-    document.querySelectorAll('.project-card').forEach(card => {
+
+    // Projects pop-up modal on click
+    document.querySelectorAll('.project-card[data-project]').forEach(card => {
         card.addEventListener('click', () => {
             const project = card.dataset.project;
             const data = projectsData[project];
 
-            document.getElementById('panel-project-title').textContent = data.title;
-            document.getElementById('panel-project-description').textContent = data.description;
-            document.getElementById('panel-project-image').src = data.image;
-
-            const techContainer = document.getElementById('panel-project-tech');
-            techContainer.innerHTML = '';
-            data.tech.forEach(tech => {
-                const span = document.createElement('span');
-                span.textContent = tech;
-                techContainer.appendChild(span);
-            });
-
-            // Position panel next to clicked card
-            const rect = card.getBoundingClientRect();
-            const panel = projectsPanel;
-            const isMobile = window.innerWidth <= 768;
-
-            if (isMobile) {
-                // Center the panel on mobile
-                panel.style.left = '50%';
-                panel.style.top = '50%';
-                panel.style.transform = 'translate(-50%, -50%)';
-            } else {
-                // Position next to card on desktop
-                panel.style.left = `${rect.right + 20}px`;
-                panel.style.top = `${rect.top}px`;
-                panel.style.transform = '';
-            }
-
-            panel.classList.add('active');
-            activePanel = panel;
-            activeProjectCard = card;
-            activeSkillCard = null;
-            activeExperienceNode = null;
-
-            // Auto-hide after 5 seconds
-            if (panelCloseTimer) clearTimeout(panelCloseTimer);
-            panelCloseTimer = setTimeout(() => {
-                panel.classList.remove('active');
-                activePanel = null;
-                activeProjectCard = null;
-            }, 5000);
-
-            // Close other panels
-            skillsPanel.classList.remove('active');
-
-            // Show certificate modal after a short delay
-            setTimeout(() => showCertificateModal(project, data), 400);
-        });
-    });
-
-    // Experience panel
-    document.querySelectorAll('.tree-node').forEach(node => {
-        node.addEventListener('click', () => {
-            const experience = node.dataset.experience;
-            const data = experienceData[experience];
-
-            document.getElementById('panel-experience-title').textContent = data.title;
-            document.getElementById('panel-experience-date').textContent = data.date;
-            document.getElementById('panel-experience-description').textContent = data.description;
-
-            // Position panel next to clicked node
-            const rect = node.querySelector('.tree-content').getBoundingClientRect();
-            const panel = experiencePanel;
-            const isMobile = window.innerWidth <= 768;
-
-            const isLeftBranch = node.closest('.left-branch') !== null;
-
-            if (isMobile) {
-                panel.style.left = '50%';
-                panel.style.top = '50%';
-                panel.style.transform = 'translate(-50%, -50%)';
-            } else {
-                const panelWidth = panel.offsetWidth || 300;
-                if (isLeftBranch) {
-                    panel.style.left = `${Math.max(16, rect.right + 20)}px`;
-                } else {
-                    panel.style.left = `${Math.max(16, rect.left - panelWidth - 20)}px`;
-                }
-                panel.style.top = `${rect.top}px`;
-                panel.style.transform = '';
-            }
-
-            panel.classList.add('active');
-            activePanel = panel;
-            activeExperienceNode = node;
-
-            // Auto-hide after 5 seconds
-            if (panelCloseTimer) clearTimeout(panelCloseTimer);
-            panelCloseTimer = setTimeout(() => {
-                panel.classList.remove('active');
-                activePanel = null;
-                activeExperienceNode = null;
-            }, 5000);
-
-            // Close other panels
-            skillsPanel.classList.remove('active');
-            projectsPanel.classList.remove('active');
+            // Show certificate modal on click
+            showCertificateModal(project, data);
         });
     });
 
@@ -424,7 +356,6 @@ function initModalHandlers() {
     document.querySelectorAll('.close-panel').forEach(closeBtn => {
         closeBtn.addEventListener('click', () => {
             skillsPanel.classList.remove('active');
-            projectsPanel.classList.remove('active');
             experiencePanel.classList.remove('active');
         });
     });
@@ -433,7 +364,6 @@ function initModalHandlers() {
     window.addEventListener('click', (e) => {
         if (!e.target.closest('.skill-card') && !e.target.closest('.project-card') && !e.target.closest('.tree-node') && !e.target.closest('.slide-panel')) {
             skillsPanel.classList.remove('active');
-            projectsPanel.classList.remove('active');
             experiencePanel.classList.remove('active');
         }
     });
@@ -461,6 +391,125 @@ function initModalHandlers() {
             certificateModal.classList.remove('active');
         }
     });
+}
+
+function initProjectSwitcher() {
+    const buttons = document.querySelectorAll('.switch-button');
+    const sections = document.querySelectorAll('.switchable-block');
+    const sectionTitle = document.querySelector('.section-title');
+
+    function setActiveSection(targetId) {
+        const transitionOverlay = document.getElementById('sectionTransition');
+
+        // Add loading state to all buttons
+        buttons.forEach(button => button.classList.add('loading'));
+
+        // Show transition overlay
+        transitionOverlay.classList.add('active');
+
+        // Remove active class from all buttons with smooth transition
+        buttons.forEach(button => {
+            button.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            button.classList.remove('active');
+        });
+
+        // Add active class to clicked button after a short delay
+        const activeButton = document.querySelector(`[data-target="${targetId}"]`);
+        if (activeButton) {
+            setTimeout(() => {
+                activeButton.classList.add('active');
+                activeButton.classList.remove('loading');
+            }, 300);
+        }
+
+        // Remove loading state from other buttons
+        setTimeout(() => {
+            buttons.forEach(button => {
+                if (button !== activeButton) button.classList.remove('loading');
+            });
+        }, 600);
+
+        // Hide transition overlay after section switch
+        setTimeout(() => {
+            transitionOverlay.classList.remove('active');
+        }, 800);
+
+        // Update section title with smooth animation
+        const newTitle = targetId === 'projects-list' ? 'Projects' : 'Vulnerabilities';
+        if (sectionTitle.textContent !== newTitle) {
+            sectionTitle.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            sectionTitle.style.opacity = '0';
+            sectionTitle.style.transform = 'translateY(-15px) scale(0.95)';
+            setTimeout(() => {
+                sectionTitle.textContent = newTitle;
+                sectionTitle.style.opacity = '1';
+                sectionTitle.style.transform = 'translateY(0) scale(1)';
+            }, 200);
+        }
+
+        // Handle section transitions with improved timing
+        sections.forEach(section => {
+            if (section.id === targetId) {
+                // Show the target section with enhanced animation
+                section.style.display = 'block';
+                // Force reflow for smooth animation
+                section.offsetHeight;
+                section.classList.add('active');
+
+                // Add fade-in class with delay for smoother effect
+                setTimeout(() => {
+                    section.classList.add('fade-in');
+                }, 100);
+
+                // Animate cards with improved stagger timing
+                const cards = section.querySelectorAll('.project-card');
+                cards.forEach((card, index) => {
+                    // Reset card state
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(50px) scale(0.9)';
+                    card.style.filter = 'blur(2px)';
+
+                    // Animate in with smooth timing
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0) scale(1)';
+                        card.style.filter = 'blur(0)';
+                    }, 200 + (index * 80)); // Smoother stagger
+                });
+            } else {
+                // Hide other sections with smooth exit animation
+                section.classList.remove('fade-in');
+                const cards = section.querySelectorAll('.project-card');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(-30px) scale(0.95)';
+                        card.style.filter = 'blur(1px)';
+                    }, index * 30);
+                });
+
+                // Hide section after cards animation
+                setTimeout(() => {
+                    section.classList.remove('active');
+                    section.style.display = 'none';
+                }, 500); // Increased delay for smoother transition
+            }
+        });
+    }
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.dataset.target;
+            setActiveSection(targetId);
+        });
+    });
+
+    // Initialize with projects active and smooth entrance
+    setTimeout(() => {
+        setActiveSection('projects-list');
+    }, 100);
 }
 
 // Magnetic Effects

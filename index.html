@@ -75,28 +75,48 @@
     <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
-            <h2 class="section-title">Skills</h2>
+            <h2 class="section-title">Security Skills</h2>
             <div class="skills-content">
                 <div class="skills-grid">
+                    <div class="skill-card glass reveal" data-skill="pentesting">
+                        <div class="skill-icon">🛡️</div>
+                        <h3>Penetration Testing</h3>
+                        <p>Ethical hacking and vulnerability assessment</p>
+                    </div>
+                    <div class="skill-card glass reveal" data-skill="websec">
+                        <div class="skill-icon">🌐</div>
+                        <h3>Web App Security</h3>
+                        <p>Securing web applications from OWASP threats</p>
+                    </div>
+                    <div class="skill-card glass reveal" data-skill="netsec">
+                        <div class="skill-icon">🔐</div>
+                        <h3>Network Security</h3>
+                        <p>Protecting networks with monitoring and defense</p>
+                    </div>
+                    <div class="skill-card glass reveal" data-skill="secauto">
+                        <div class="skill-icon">🤖</div>
+                        <h3>Security Automation</h3>
+                        <p>Automating scans and remediation workflows</p>
+                    </div>
                     <div class="skill-card glass reveal" data-skill="javascript">
                         <div class="skill-icon">JS</div>
                         <h3>JavaScript</h3>
-                        <p>Modern ES6+ development</p>
+                        <p>Core scripting and frontend programming</p>
                     </div>
-                    <div class="skill-card glass reveal" data-skill="react">
-                        <div class="skill-icon">⚛️</div>
-                        <h3>React</h3>
-                        <p>Component-based UI development</p>
+                    <div class="skill-card glass reveal" data-skill="csshtml">
+                        <div class="skill-icon">&lt;/&gt;</div>
+                        <h3>CSS / HTML</h3>
+                        <p>Responsive layout and semantic markup skills</p>
                     </div>
                     <div class="skill-card glass reveal" data-skill="python">
                         <div class="skill-icon">🐍</div>
                         <h3>Python</h3>
-                        <p>Backend and data processing</p>
+                        <p>General-purpose scripting and automation</p>
                     </div>
-                    <div class="skill-card glass reveal" data-skill="design">
-                        <div class="skill-icon">🎨</div>
-                        <h3>UI/UX Design</h3>
-                        <p>User-centered design principles</p>
+                    <div class="skill-card glass reveal" data-skill="java">
+                        <div class="skill-icon">☕</div>
+                        <h3>Java</h3>
+                        <p>Object-oriented programming fundamentals</p>
                     </div>
                 </div>
                 <!-- Skills Slide Panel -->
@@ -146,64 +166,129 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Projects</h2>
+            <div class="projects-switcher">
+                <button type="button" class="switch-button active" data-target="projects-list">Projects</button>
+                <button type="button" class="switch-button" data-target="vuln-list">Vulnerabilities</button>
+            </div>
+            <div class="projects-section-transition" id="sectionTransition"></div>
             <div class="projects-content">
-                <div class="projects-grid">
-                    <div class="project-card glass reveal" data-project="1">
-                        <div class="project-image">
-                            <img src="https://via.placeholder.com/400x250/6366f1/ffffff?text=Project+1" alt="Project 1">
-                        </div>
-                        <div class="project-content">
-                            <h3>E-Commerce Platform</h3>
-                            <p>A full-stack e-commerce solution with modern UI</p>
-                            <div class="project-tech">
-                                <span>React</span>
-                                <span>Node.js</span>
-                                <span>MongoDB</span>
+                <div id="projects-list" class="project-block switchable-block active">
+                    <h3 class="block-title">Projects</h3>
+                    <div class="projects-grid">
+                        <div class="project-card glass reveal" data-project="1">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/400x250/6366f1/ffffff?text=Project+1" alt="Project 1">
+                            </div>
+                            <div class="project-content">
+                                <h3>Unknown</h3>
+                                <p>A yet to be done</p>
+                                <div class="project-tech">
+                                    <span>React</span>
+                                    <span>Node.js</span>
+                                    <span>MongoDB</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="project-card glass reveal" data-project="2">
-                        <div class="project-image">
-                            <img src="https://via.placeholder.com/400x250/06b6d4/ffffff?text=Project+2" alt="Project 2">
-                        </div>
-                        <div class="project-content">
-                            <h3>Data Visualization Dashboard</h3>
-                            <p>Interactive dashboard for real-time data analysis</p>
-                            <div class="project-tech">
-                                <span>D3.js</span>
-                                <span>Python</span>
-                                <span>Flask</span>
+                        <div class="project-card glass reveal" data-project="2">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/400x250/06b6d4/ffffff?text=Project+2" alt="Project 2">
+                            </div>
+                            <div class="project-content">
+                                <h3>Unknown</h3>
+                                <p>A yet to be done</p>
+                                <div class="project-tech">
+                                    <span>D3.js</span>
+                                    <span>Python</span>
+                                    <span>Flask</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="project-card glass reveal" data-project="3">
-                        <div class="project-image">
-                            <img src="https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Project+3" alt="Project 3">
-                        </div>
-                        <div class="project-content">
-                            <h3>Mobile App</h3>
-                            <p>Cross-platform mobile application</p>
-                            <div class="project-tech">
-                                <span>React Native</span>
-                                <span>Firebase</span>
+                        <div class="project-card glass reveal" data-project="3">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Project+3" alt="Project 3">
+                            </div>
+                            <div class="project-content">
+                                <h3>Unknown</h3>
+                                <p>A yet to be done</p>
+                                <div class="project-tech">
+                                    <span>React Native</span>
+                                    <span>Firebase</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Projects Slide Panel -->
-                <div id="projects-panel" class="slide-panel">
-                    <div class="panel-content glass project-panel-content">
-                        <span class="close-panel">&times;</span>
-                        <div class="panel-project-image">
-                            <img id="panel-project-image" src="" alt="">
+                <div id="vuln-list" class="project-block switchable-block">
+                    <h3 class="block-title">Found Vulnerabilities</h3>
+                    <div class="projects-grid vulnerabilities-grid">
+                        <div class="project-card glass reveal vulnerability-card">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/400x250/f97316/ffffff?text=Bug+1" alt="Bug 1">
+                            </div>
+                            <div class="project-content">
+                                <h3>Reflected XSS</h3>
+                                <p>Found reflected script injection in search query handling.</p>
+                                <div class="project-tech">
+                                    <span>High</span>
+                                    <span>Web App</span>
+                                    <span>Input Validation</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="panel-project-details">
-                            <h3 id="panel-project-title"></h3>
-                            <p id="panel-project-description"></p>
-                            <div class="panel-project-tech" id="panel-project-tech"></div>
-                            <div class="panel-project-links">
-                                <a href="#" class="project-link">Live Demo</a>
-                                <a href="#" class="project-link">GitHub</a>
+                        <div class="project-card glass reveal vulnerability-card">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/400x250/f87171/ffffff?text=Bug+2" alt="Bug 2">
+                            </div>
+                            <div class="project-content">
+                                <h3>Insecure Direct Object</h3>
+                                <p>Missing authorization check for user resource access.</p>
+                                <div class="project-tech">
+                                    <span>Medium</span>
+                                    <span>API</span>
+                                    <span>Authorization</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-card glass reveal vulnerability-card">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/400x250/34d399/ffffff?text=Bug+3" alt="Bug 3">
+                            </div>
+                            <div class="project-content">
+                                <h3>Exposed Secrets</h3>
+                                <p>Detected credentials stored in a public configuration file.</p>
+                                <div class="project-tech">
+                                    <span>High</span>
+                                    <span>DevOps</span>
+                                    <span>Secrets</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-card glass reveal vulnerability-card">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/400x250/0ea5e9/ffffff?text=Bug+4" alt="Bug 4">
+                            </div>
+                            <div class="project-content">
+                                <h3>Open Redirect</h3>
+                                <p>Unvalidated redirect parameter could lead users to malicious sites.</p>
+                                <div class="project-tech">
+                                    <span>Medium</span>
+                                    <span>Web</span>
+                                    <span>Redirect</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-card glass reveal vulnerability-card">
+                            <div class="project-image">
+                                <img src="https://via.placeholder.com/400x250/818cf8/ffffff?text=Bug+5" alt="Bug 5">
+                            </div>
+                            <div class="project-content">
+                                <h3>Weak Password Policy</h3>
+                                <p>Authentication allows weak passwords without complexity enforcement.</p>
+                                <div class="project-tech">
+                                    <span>Low</span>
+                                    <span>Auth</span>
+                                    <span>Password</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -262,7 +347,7 @@
                         <div class="tree-dot"></div>
                         <div class="tree-content glass">
                             <h3>Senior Developer</h3>
-                            <span class="tree-date">2022 - Present</span>
+                            <span class="tree-date">2025 - Present</span>
                             <p>Leading development of web applications and mentoring junior developers.</p>
                         </div>
                     </div>
@@ -271,8 +356,8 @@
                     <div class="tree-node reveal" data-experience="2">
                         <div class="tree-dot"></div>
                         <div class="tree-content glass">
-                            <h3>Full Stack Developer</h3>
-                            <span class="tree-date">2020 - 2022</span>
+                            <h3>Head Management</h3>
+                            <span class="tree-date">2025 ( 6 Months) </span>
                             <p>Developed and maintained multiple client projects using modern technologies.</p>
                         </div>
                     </div>
@@ -281,9 +366,9 @@
                     <div class="tree-node reveal" data-experience="3">
                         <div class="tree-dot"></div>
                         <div class="tree-content glass">
-                            <h3>Junior Developer</h3>
-                            <span class="tree-date">2019 - 2020</span>
-                            <p>Started my journey in web development, learning and applying new technologies.</p>
+                            <h3>Pentester</h3>
+                            <span class="tree-date">2025 - 2026 ( 9 months )</span>
+                            <p>Led a penetration testing project on a real-world web application, identifying critical vulnerabilities and delivering actionable security recommendations based on industry best practices.</p>
                         </div>
                     </div>
                 </div>
